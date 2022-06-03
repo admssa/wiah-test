@@ -1,0 +1,3 @@
+vpc_id     = "vpc-id"
+subnet_ids = ["subnet-id"]
+ssh_key    = "name-of-keypair"
