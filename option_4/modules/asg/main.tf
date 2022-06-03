@@ -13,11 +13,11 @@ resource "aws_autoscaling_group" "this" {
 
 resource "aws_launch_template" "this" {
 
-  name_prefix            = "lt-${replace(var.name, "/[^A-Za-z0-9]/", "")}${replace(var.instance_type, "/[^A-Za-z0-9]/", "")}"
-  instance_type          = var.instance_type
-  image_id               = data.aws_ami_ids.ubuntu.ids[0]
-  key_name               = var.ssh_key
-  user_data              = base64encode(local.userdata)
+  name_prefix   = "lt-${replace(var.name, "/[^A-Za-z0-9]/", "")}${replace(var.instance_type, "/[^A-Za-z0-9]/", "")}"
+  instance_type = var.instance_type
+  image_id      = data.aws_ami_ids.ubuntu.ids[0]
+  key_name      = var.ssh_key
+  user_data     = base64encode(local.userdata)
 
   iam_instance_profile {
     name = aws_iam_instance_profile.default_profile.name
@@ -39,7 +39,7 @@ resource "aws_launch_template" "this" {
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups = [aws_security_group.this.id]
+    security_groups             = [aws_security_group.this.id]
   }
 
   tag_specifications {
